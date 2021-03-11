@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app/authentication_service.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               context.read<AuthenticationService>().signOut();
             },

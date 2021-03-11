@@ -3,9 +3,9 @@ import 'package:quiz_app/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
-  SignInPage({Key key}) : super(key: key);
+  SignInPage({Key? key}) : super(key: key);
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
@@ -21,7 +21,7 @@ class SignInPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               
-              controller: emailController,
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
               ),
@@ -36,10 +36,10 @@ class SignInPage extends StatelessWidget {
               ),
             ),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               context.read<AuthenticationService>().signIn(
-                    email: emailController.text.trim(),
+                    email: _emailController.text.trim(),
                     password: passwordController.text.trim(),
                   );
             },

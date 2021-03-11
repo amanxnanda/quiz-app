@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
         StreamProvider(
+            initialData: context.watch<User>(),
             create: (context) =>
                 context.read<AuthenticationService>().authStateChanges),
       ],
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthenticatorWrapper extends StatelessWidget {
-  const AuthenticatorWrapper({Key key}) : super(key: key);
+  const AuthenticatorWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
