@@ -16,14 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-
-      
       providers: [
         Provider<AuthenticationService>(
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
         StreamProvider(
-            initialData: context.watch<User>(),
+            initialData: null,
             create: (context) =>
                 context.read<AuthenticationService>().authStateChanges),
       ],
@@ -44,13 +42,12 @@ class AuthenticatorWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
+    final firebaseUser = context.watch<User?>();
+    if (firebaseUser?.email == null) {
 
-
-    if (firebaseUser != null) {
-      return HomePage();
-    } else {
       return SignInPage();
+    } else {
+      return HomePage();
     }
   }
 }
